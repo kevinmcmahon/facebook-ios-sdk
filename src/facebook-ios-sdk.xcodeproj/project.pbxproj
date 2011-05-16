@@ -180,7 +180,7 @@
 				D2AAC07A0554694100DB518D /* Headers */,
 				D2AAC07B0554694100DB518D /* Sources */,
 				D2AAC07C0554694100DB518D /* Frameworks */,
-				0A47E73312B1D85500C147EF /* ShellScript */,
+				0A1D538413342F7C00E54F86 /* Make Fat Static */,
 			);
 			buildRules = (
 			);
@@ -217,19 +217,19 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A47E73312B1D85500C147EF /* ShellScript */ = {
+		0A1D538413342F7C00E54F86 /* Make Fat Static */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Make Fat Static";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "#!/bin/bash\n# (c) 2011 Kevin McMahon, http://www.kevfoo.com\n\nif [[ $TARGET_BUILD_DIR == *Release-iphoneos* ]]\nthen\n\necho \"Rebuilding library as proper multiarch file\"\n\nmv $BUILT_PRODUCTS_DIR/libfacebook_ios_sdk.a $BUILT_PRODUCTS_DIR/libfacebook_ios_sdk.release-iphoneos.a\n\nlibtool -static $BUILT_PRODUCTS_DIR/libfacebook_ios_sdk.release-iphoneos.a  -o $BUILT_PRODUCTS_DIR/libfacebook_ios_sdk.a\nelse\necho \"Skipping arm multi-architecture rebuild\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
